@@ -8,6 +8,7 @@ function player(name, char){
 var player1 = player('A','X');
 var player2 = player('B','O');
 
+
 function checkwin(gameboard){
     for(var i=0;i<3;i++){
         if(gameboard[i][0] === gameboard[i][1] && gameboard[i][1] === gameboard[i][2]){
@@ -55,12 +56,14 @@ function gameoverutil(gameboard){
     if(score == 10){
         console.log("Player X");
         document.getElementById('turn').textContent = "Start a new game!";
+        document.getElementById('warning').textContent = "Yuhuu !";
         gamestate.final_str = "Player X won!";
         gamestate.state = 1;
     }
     else if(score == -10){
         console.log("Player O");
         document.getElementById('turn').textContent = "Start a new game!";
+        document.getElementById('warning').textContent = "Yuhuu !";
         gamestate.final_str = "Player O won!";
         gamestate.state = 1;
     }
@@ -68,6 +71,7 @@ function gameoverutil(gameboard){
         if(checktie(gameboard)){
             console.log("Game tied");
             document.getElementById('turn').textContent = "Start a new game!";
+            document.getElementById('warning').textContent = "Happens everytime!";
             gamestate.final_str = "Game tied!";
             gamestate.state = 1;
         }
@@ -85,7 +89,7 @@ var gamestate = {
         gameoverutil(this.gameboard);
     },
     handletexts: function(){
-        document.getElementById('warning').textContent = "";
+        //document.getElementById('warning').textContent = "Good Luck!";
         if(document.getElementById('state').textContent != this.mid_str && this.state == 0)
             document.getElementById('state').textContent = this.mid_str;
         if(this.state == 1)
@@ -128,15 +132,19 @@ for(var i=0; i<tds.length; i++){
             document.getElementById('turn').textContent = "Player O turn";
             gamestate.turn = 'O';
             gamestate.gameboard[row][col] = 'X';
+            node.style.background = '#101820FF';
         }
         else{
             document.getElementById('turn').textContent = "Player X turn";
             gamestate.turn = 'X';
             gamestate.gameboard[row][col] = 'O';
+            node.style.background = '#F2AA4CFF';
         }
         gamestate.checkgameover();
         gamestate.handletexts();
-    })
+    }) 
+
+    
 }
 
 document.getElementById('newgamebutton').addEventListener('click', function(event){
