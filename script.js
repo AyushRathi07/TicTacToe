@@ -89,7 +89,8 @@ var gamestate = {
         gameoverutil(this.gameboard);
     },
     handletexts: function(){
-        //document.getElementById('warning').textContent = "Good Luck!";
+        if(document.getElementById('warning').textContent == "Invalid move, sir")
+            document.getElementById('warning').textContent = "Good luck!";
         if(document.getElementById('state').textContent != this.mid_str && this.state == 0)
             document.getElementById('state').textContent = this.mid_str;
         if(this.state == 1)
